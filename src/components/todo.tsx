@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from '../styles/todo.less';
 import { Button, Space, Table, Tag, Popconfirm, message, Checkbox } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -66,9 +66,9 @@ const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
     setRecord(record);
   };
   
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setIsModalVisible(false);
-  };
+  }, []);
 
   const deleteHandler = (id:number) => {
     dispatch({
@@ -77,7 +77,7 @@ const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
     });
     message.success('删除成功');
   };
-  const onFinish = (values) => {
+  const onFinish = useCallback((values) => {
     let id = 0;
     if (record) {
       id = record.id;
@@ -97,7 +97,7 @@ const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
       });
     }
     setIsModalVisible(false);
-  };
+  }, []);
   const addHandler = () =>{
     setIsModalVisible(true);
     setRecord(undefined);
