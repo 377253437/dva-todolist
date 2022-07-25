@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import styles from '../styles/todo.less';
-import { Button, Space, Table, Tag, Popconfirm, message, Checkbox } from 'antd';
+import { Button, Space, Table, Tag, Popconfirm, message, Checkbox, Input } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { TodoState } from '../typing/todo';
 import { Dispatch } from 'redux';
@@ -11,13 +11,17 @@ interface IAppProps {
   todos: TodoState[];
   dispatch: Dispatch<any>;
 }
+interface InputValues {
+  title: string;
+  detail: string;
+}
 
 const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
-  const data = todos;
-  let noDoneArr = data.filter(item => item.status === false);
-  let isDoneArr = data.filter(item => item.status === true);
-  const DoneStyle = { 'color': '#1DA57A' };
-  const noDoneStyle = { 'color': 'red' };
+  const data:TodoState[] = todos;
+  let noDoneArr:TodoState[] = data.filter(item => item.status === false);
+  let isDoneArr:TodoState[] = data.filter(item => item.status === true);
+  const DoneStyle: {color:string} = { 'color': '#1DA57A' };
+  const noDoneStyle: {color:string} = { 'color': 'red' };
   // const { Search } = Input;
   const columns: ColumnsType<TodoState> = [
     {
@@ -77,7 +81,7 @@ const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
     });
     message.success('删除成功');
   };
-  const onFinish = useCallback((values) => {
+  const onFinish = useCallback((values:InputValues) => {
     let id = 0;
     if (record) {
       id = record.id;
