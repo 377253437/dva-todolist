@@ -2,22 +2,22 @@ import dva from 'dva';
 import createhistory from 'history/createBrowserHistory';
 import './index.less';
 import 'antd/dist/antd.css';
-// import { persistEnhancer } from 'dva-model-persist';
-// import storage from 'dva-model-persist/lib/storage'; 
+import { persistEnhancer } from 'dva-model-persist';
+import storage from 'dva-model-persist/lib/storage'; 
 
 // 1. Initialize
 // const app = dva();
 const app = dva({
   history: createhistory(),
 });
-// app.use({
-//   extraEnhancers: [
-//     persistEnhancer({
-//       key: 'model',
-//       storage
-//     })
-//   ],
-// });
+app.use({
+  extraEnhancers: [
+    persistEnhancer({
+      key: 'model',
+      storage
+    })
+  ],
+});
 
 // 2. Plugins
 // app.use({});
