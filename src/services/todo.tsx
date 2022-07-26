@@ -39,9 +39,9 @@
 //     },
 //   );
 // }
-import request from '../utils/request';
+// import request from '../utils/request';
 
-export function query() {
-  return request('/api/todos');
-}
+// export function query() {
+//   return request('/api/todos');
+// }
 

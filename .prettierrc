@@ -1,7 +1,9 @@
 {
-    "printWidth": 800,
-    "singleQuote": true, // 使用单引号
-    "semi": false, // 不使用分号
-    "trailingComma": "none"  // 对象最后一项默认格式化会加逗号, 这里取消
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": true,
+  "arrowParens": "always",
+  "printWidth": 120 
   }
   

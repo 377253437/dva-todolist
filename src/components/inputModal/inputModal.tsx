@@ -1,26 +1,17 @@
 import React, { useEffect } from 'react';
-import { Input, Form, Modal } from 'antd';
+import { Input, Form, Modal } from 'sensd';
+import { TodoState } from '../../typing/todo';
 
-// interface IValues {
-//   title: string;
-//   detail: string;
-//   id?: string;
-// }
 interface IAppProps {
   isModalVisible: boolean;
   onCancel: () => void;
   record: any;
-  onFinish: () => void;
+  onFinish: (values: TodoState) => void;
 }
 
-const InputModal: React.FC<IAppProps> = ({
-  isModalVisible,
-  onCancel,
-  record,
-  onFinish
-}) => {
+const InputModal: React.FC<IAppProps> = ({ isModalVisible, onCancel, record, onFinish }) => {
   const [form] = Form.useForm();
-  const onSubmit = ()=> {
+  const onSubmit = () => {
     form.submit();
   };
   useEffect(() => {
@@ -32,20 +23,9 @@ const InputModal: React.FC<IAppProps> = ({
   }, [isModalVisible]);
   return (
     <div>
-      <Modal 
-        title="Todolist的信息" 
-        visible={isModalVisible} 
-        onCancel={onCancel} 
-        onOk={onSubmit} 
-        forceRender
-      >
-        <Form 
-          layout="vertical" 
-          name="form_in_modal" 
-          form={form}
-          onFinish={ onFinish }
-        >
-          <Form.Item  
+      <Modal title="Todolist的信息" visible={isModalVisible} onCancel={onCancel} onOk={onSubmit} forceRender>
+        <Form layout="vertical" name="form_in_modal" form={form} onFinish={onFinish}>
+          <Form.Item
             name="title"
             label="标题"
             rules={[

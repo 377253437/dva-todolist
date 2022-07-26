@@ -1,6 +1,6 @@
 import * as React from 'react';
-import style from '../styles/home.less';
-import Todo from '../components/todo';
+import style from './Home.less';
+import Todo from '../../components/todo/Todo';
 const Home: React.FC = (): React.ReactElement => {
   return (
     <div>

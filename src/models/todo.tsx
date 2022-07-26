@@ -1,9 +1,6 @@
 import { TodoState } from '../typing/todo';
-import { Subscription } from 'dva';
 import { Reducer } from 'redux';
-// import { getTodos, editTodos, deleteTodos } from '../services/todo';
-// import { Effect, Subscription } from 'dva';
-  
+
 export interface ModelType {
   namespace: string;
   state: TodoState[];
@@ -16,7 +13,6 @@ export interface ModelType {
     cancelAll:Reducer<TodoState>;
     deleteAll:Reducer<TodoState>;
   };
-  subscriptions: { setup: Subscription };
 }
 const ModelTodo = {
   namespace: 'todos',
@@ -41,10 +37,6 @@ const ModelTodo = {
     }
   ],
   reducers: {
-    // save(state, { payload }) {
-    //   console.log(payload);
-    //   return [...state, ...payload];
-    // },
     add(state, { payload }) {
       const { values } = payload;
       return [...state, { id: new Date().getTime(), ...values, status: false }];
@@ -75,27 +67,12 @@ const ModelTodo = {
       return state.map((item) => item.id === id ? { ...item, status: !item.status } : item
       );
     },
-    // search(state, { payload }) {
-    //   const { value } = payload;
-    //   console.log('搜索', value);
-    //   // let filterArr = [];
-    //   // filterArr = state.filter(item => {
-    //   //   return item.title.includes(value);
-    //   // });
-    //   let filterArr = state.filter(item => item.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    //   console.log(filterArr);
-    //   return filterArr;
-    // },
     selectAll(state) {
-      // let newState = 
-      // });
-      let newState = state.map(item => return { ...item ,status:true });
-      return newState
+      let newState = state.map(item => ({ ...item, status: true }));
+      return newState;
     },
     cancelAll(state) {
-      // let newState = state.map(item => item.status === true);
-      let newState = state.map(item => return { ...item ,status:false });
-      // let newState = state.forEach(item => item.status:false );
+      let newState = state.map(item => ({ ...item, status: false }));
       console.log(newState);
      
       return newState;
@@ -104,17 +81,6 @@ const ModelTodo = {
       return state.filter((item: { status: boolean }) => item.status === false);
     },
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        if (pathname === '/') {
-          dispatch({
-            type: 'updateTodo'
-          });
-        }
-      });
-    }
-  }
 };
 
 export default ModelTodo;
