@@ -1,12 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import styles from './Todo.less';
-import { Space, Table, Tag, Popconfirm, message, Checkbox, Button,Tooltip } from 'sensd';
+import { Space, Table, Tag, Popconfirm, message, Checkbox, Button, Tooltip } from 'sensd';
 import { TodoState } from '../../typing/todo';
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import InputModal from '../inputModal/inputModal';
-
-
 
 interface IAppProps {
   todos: TodoState[];
@@ -30,15 +28,16 @@ const Todo: React.FC<IAppProps> = ({ todos, dispatch }) => {
     {
       title: '详情',
       dataIndex: 'detail',
-      width: '500px';
+      width: '500px',
       ellipsis: {
         showTitle: false,
       },
-      render: detail => (
+      render: (detail) => (
         <Tooltip placement="topLeft" title={detail}>
           {detail}
         </Tooltip>
-    )},
+      ),
+    },
     {
       title: '状态',
       dataIndex: 'status',
