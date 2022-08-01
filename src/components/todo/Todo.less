@@ -1,0 +1,64 @@
+.wrapBox {
+  float: left;
+  width: 50%;
+  margin-left: 7px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  .header {
+    display: flex;
+    color: rgb(100, 139, 233);
+    font-weight: 800;
+    font-size: 70px;
+    text-align: center;
+    justify-content: center;
+    flex: 0;
+    height: 100px;
+    line-height: 100px;
+    .DoneStyle {
+      margin: 17px;
+      color: #1da57a;
+      font-size: large;
+    }
+    .noDoneStyle {
+      color: red;
+      font-size: large;
+      margin: 0 10px;
+    }
+  }
+  .inputBox {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    height: 50px;
+    margin: 10px auto;
+    .searchBox {
+        width: 600px;
+      }
+    .doneBox {
+      display: flex;
+      justify-content: space-between;
+      font-size: larger;
+      width: 500px;
+      margin-top: -10px;
+      .buttonBox {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 300px;
+      }
+    }
+  }
+  .line {
+    height: 2px;
+    width: 1660px;
+    @media (max-width: 1500px) {
+        width: 1430px;
+      }
+    background-color: rgb(68, 142, 247);
+  }
+  .contentBox {
+    margin-top: 30px;
+  }
+}
